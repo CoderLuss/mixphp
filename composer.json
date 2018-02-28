@@ -1,0 +1,25 @@
+{
+    "name":"codeluss/mixphp",
+    "type":"php system",
+    "description":"php system",
+    "keywords":["php","mixphp"],
+    "license":"MIT",
+    "support":{
+        "issues":"http://www.mixphp.cn/"
+    },
+    "authors":[
+        {
+            "name":"onanying",
+            "email":"coder.liu@qq.com"
+        }
+    ],
+    "require":{
+        "php": ">=5.4.0"
+    },
+    "autoload":{
+          "psr-4":{"app\\":""}
+    },
+    "bin":[
+        "mixphp"
+    ]
+}
