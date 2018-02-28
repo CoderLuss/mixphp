@@ -1,7 +1,7 @@
 {
     "name":"codeluss/mixphp",
     "type":"php system",
-    "description":"php system",
+    "description":"php-system",
     "keywords":["php","mixphp"],
     "license":"MIT",
     "support":{
