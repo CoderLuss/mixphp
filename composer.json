@@ -1,5 +1,5 @@
 {
-    "name":"coderluss/mixphp",
+    "name":"codeluss/mixphp",
     "type":"php-system",
     "description":"php-system",
     "keywords":["php","mixphp"],
@@ -15,11 +15,5 @@
     ],
     "require":{
         "php": ">=5.4.0"
-    },
-    "autoload":{
-          "psr-4":{"app\\":""}
-    },
-    "bin":[
-        "mixphp"
-    ]
+    }
 }

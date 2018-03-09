@@ -91,6 +91,7 @@ class Application
         $action = "{$method} {$action}";
         // 路由匹配
         list($action, $queryParams) = \Mix::app()->route->match($action);
+
         // 执行功能
         if ($action) {
             // 路由参数导入请求类

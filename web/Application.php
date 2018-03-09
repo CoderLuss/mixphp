@@ -54,8 +54,11 @@ class Application extends \mix\base\Application
     public function loadAllComponent()
     {
         foreach (array_keys($this->components) as $name) {
+            var_dump($name);
             $this->loadComponent($name);
         }
+        echo '-------';
+        die;
     }
 
     // 清扫组件容器

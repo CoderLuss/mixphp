@@ -27,7 +27,7 @@ class Route extends Component
     // 默认路由规则
     protected $defaultRules = [
         // 首页
-        ''                    => 'index/index',
+        ''                    => 'desktop/index',
         // 一级目录
         ':controller/:action' => ':controller/:action',
     ];
