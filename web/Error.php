@@ -94,8 +94,10 @@ class Error extends Component
                 ];
             }
         }
-        $format                           = \Mix::app()->error->format;
-        $tpl                              = [
+        //修改view 文件位置
+        \Mix::app()->viewPath = 'vendor/mixphp/view/';
+        $format = \Mix::app()->error->format;
+        $tpl = [
             404 => "error.{$format}.not_found",
             500 => "error.{$format}.internal_server_error",
         ];

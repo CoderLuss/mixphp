@@ -122,4 +122,15 @@ class Request extends Component
         return is_null($name) ? $container : (isset($container[$name]) ? $container[$name] : null);
     }
 
+    // 获取路由
+    public function parseRequest(){
+        $action = $this->server('path_info');
+        $action = str_replace(\Mix::app()->route->suffix, '', $action);
+        $actionTemp = explode('/',trim($action,'/'));
+        $classMap = \Mix::$aliases;
+        foreach ($classMap['@apps'] as $val){
+            
+        }
+    }
+
 }

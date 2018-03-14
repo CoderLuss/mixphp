@@ -30,6 +30,15 @@ class Application
     // 控制器命名空间
     public $controllerNamespace = '';
 
+    // 默认 VIEW 文件路径
+    protected $defaultViewPath = '';
+
+    // 默认 layout 文件路径
+    public $defaultLayoutPath = '';
+
+    // 动态设置 VIEW 文件路径
+    public $viewPath = '';
+
     // 组件配置
     public $components = [];
 
@@ -88,16 +97,17 @@ class Application
     // 执行功能并返回
     public function runAction($method, $action, $controllerAttributes = [])
     {
+        $action = $this->setControllerNamespace($action);
         $action = "{$method} {$action}";
         // 路由匹配
         list($action, $queryParams) = \Mix::app()->route->match($action);
-
         // 执行功能
         if ($action) {
             // 路由参数导入请求类
             \Mix::app()->request->setRoute($queryParams);
             // 实例化控制器
             $action    = "{$this->controllerNamespace}\\{$action}";
+            $this->setViewPath($action);
             $classFull = \mix\base\Route::dirname($action);
             $classPath = \mix\base\Route::dirname($classFull);
             $className = \mix\base\Route::snakeToCamel(\mix\base\Route::basename($classFull), true);
@@ -122,13 +132,42 @@ class Application
     // 获取配置目录路径
     public function getConfigPath()
     {
-        return $this->basePath . 'config' . DIRECTORY_SEPARATOR;
+        return \Mix::getAlias('@config') . DIRECTORY_SEPARATOR;
     }
 
     // 获取运行目录路径
     public function getRuntimePath()
     {
-        return $this->basePath . 'runtime' . DIRECTORY_SEPARATOR;
+        return \Mix::getAlias('@storage') . '/runtime' . DIRECTORY_SEPARATOR;
+    }
+
+    private function setControllerNamespace($action){
+        $aliases = \Mix::$aliases;
+        $actionTemp = explode('/',$action);
+        if(count($actionTemp) == 2){
+            return $action;
+        }
+
+        $controllerTemp = explode('\\',$this->controllerNamespace);
+        $controllerTemp[1] = $actionTemp[0];
+        $this->controllerNamespace = implode($controllerTemp,'\\');
+        unset($actionTemp[0]);
+        return implode($actionTemp,'/');
+    }
+
+    private function setViewPath($action){
+        $actionTemp = explode('\\',$action);
+        $viewDir = $actionTemp[count($actionTemp)-2];
+        $path = $this->basePath.$action;
+        $path = substr($path,0,strpos($path,'\controller'));
+        $path = str_replace('\\','/',$path).'/view/'.$viewDir;
+        $path = str_replace('/app/','/apps/',$path);
+        $this->defaultViewPath = $path;
+        $this->setLayoutPath();
+    }
+
+    private function setLayoutPath(){
+        $this->defaultLayoutPath = dirname($this->defaultViewPath).DIRECTORY_SEPARATOR;
     }
 
 }

@@ -9,5 +9,4 @@ class Mix extends BaseMix
 {
 
 }
-
 //spl_autoload_register(['Mix', 'autoload'], true, true);

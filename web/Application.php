@@ -54,11 +54,8 @@ class Application extends \mix\base\Application
     public function loadAllComponent()
     {
         foreach (array_keys($this->components) as $name) {
-            var_dump($name);
             $this->loadComponent($name);
         }
-        echo '-------';
-        die;
     }
 
     // 清扫组件容器
@@ -74,13 +71,17 @@ class Application extends \mix\base\Application
     // 获取公开目录路径
     public function getPublicPath()
     {
-        return $this->basePath . 'public' . DIRECTORY_SEPARATOR;
+        return \Mix::getAlias('@storage/static') . DIRECTORY_SEPARATOR;
     }
 
     // 获取视图目录路径
     public function getViewPath()
     {
-        return $this->basePath . 'view' . DIRECTORY_SEPARATOR;
+        if ($this->viewPath != ''){
+            $path = $this->basePath.$this->viewPath.DIRECTORY_SEPARATOR;
+            return $path;
+        }
+        return $this->defaultViewPath . DIRECTORY_SEPARATOR;
     }
 
 }

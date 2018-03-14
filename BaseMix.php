@@ -13,6 +13,9 @@ class BaseMix
     // Mix 目录
     public static $aliases = ['@mix' => __DIR__];
 
+    //
+    public static $classMap = [];
+
     // 主机
     protected static $_host;
 
@@ -132,7 +135,6 @@ class BaseMix
 
     public static function autoload($className)
     {
-        die('ddd');
         if (isset(static::$classMap[$className])) {
             $classFile = static::$classMap[$className];
             if ($classFile[0] === '@') {
@@ -149,7 +151,7 @@ class BaseMix
 
         include($classFile);
 
-        if (YII_DEBUG && !class_exists($className, false) && !interface_exists($className, false) && !trait_exists($className, false)) {
+        if (!class_exists($className, false) && !interface_exists($className, false) && !trait_exists($className, false)) {
             throw new UnknownClassException("Unable to find '$className' in file: $classFile. Namespace missing?");
         }
     }
