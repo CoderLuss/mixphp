@@ -1,6 +1,7 @@
 {
   "name": "coderluss/mixphp",
   "description": "PHP Framework",
+  "license":"GPL-2.0",
   "keywords": [
       "coderluss",
       "framework",
