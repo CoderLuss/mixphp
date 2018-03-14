@@ -1,0 +1,11 @@
+{
+  "name": "yiisoft/yii2",
+  "description": "Yii PHP Framework Version 2",
+  "keywords": [
+      "yii2",
+      "framework"
+  ],
+  "autoload": {
+      "psr-4": {"yii\\": ""}
+  }
+}
