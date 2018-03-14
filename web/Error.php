@@ -95,7 +95,8 @@ class Error extends Component
             }
         }
         //修改view 文件位置
-        \Mix::app()->viewPath = 'vendor/mixphp/view/';
+        //echo \Mix::app()->basePath;die;
+        \Mix::app()->viewPath = str_replace(\Mix::app()->basePath,'',dirname(__DIR__).'/view');
         $format = \Mix::app()->error->format;
         $tpl = [
             404 => "error.{$format}.not_found",
