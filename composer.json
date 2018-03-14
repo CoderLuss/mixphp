@@ -6,6 +6,9 @@
       "framework"
   ],
   "autoload": {
-      "psr-4": {"yii\\": ""}
+    "psr-4": {
+      "mix\\": "",
+      "app\\": "apps/"
+    }
   }
 }
