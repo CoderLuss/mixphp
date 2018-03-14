@@ -1,14 +1,14 @@
 {
-  "name": "yiisoft/yii2",
-  "description": "Yii PHP Framework Version 2",
+  "name": "coderluss/mixphp",
+  "description": "PHP Framework",
   "keywords": [
-      "yii2",
-      "framework"
+      "coderluss",
+      "framework",
+      "mixphp"
   ],
   "autoload": {
     "psr-4": {
       "mix\\": "",
-      "app\\": "apps/"
     }
   }
 }
